@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gasa_free_data/components/loader.dart';
 import 'package:gasa_free_data/components/menu.dart';
-import 'package:gasa_free_data/components/offre_card.dart';
-import 'package:gasa_free_data/controllers/offre_controller.dart';
-import 'package:gasa_free_data/models/offres.dart';
 import 'package:gasa_free_data/pages/profil_page.dart';
 import 'package:gasa_free_data/pages/section/historique_payment.dart';
 import 'package:gasa_free_data/pages/section/list_offre.dart';
@@ -11,7 +7,6 @@ import 'package:get/get.dart';
 
 import 'package:gasa_free_data/themes/theme.dart';
 
-import '../controllers/user_controller.dart';
 import '../utils/shared_prefs.dart';
 import 'login_page.dart';
 

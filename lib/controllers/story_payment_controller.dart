@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:gasa_free_data/controllers/user_controller.dart';
@@ -15,8 +16,9 @@ class StoryPaymentController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    getPayment();
-    print("Chargement des offres...");
+    Timer.periodic(Duration(seconds: 5), (Timer t){
+      getPayment();
+    });
   }
 
   Future<void> getPayment() async {
@@ -24,7 +26,7 @@ class StoryPaymentController extends GetxController{
       var response = await http.get(
         Uri.parse(baseUrl2 + 'api/historique/1'),
         headers: {
-          "X-API-KEY": "AfGwD4MP1y5DVBypntCsupBVVeYEwMpfcshFbCT7"
+          "X-API-KEY": "YaKPUrp8En4vFdPwgBrRzzsdT5CKEg6WnAB7ENhL"
         },
       );
 
@@ -43,7 +45,7 @@ class StoryPaymentController extends GetxController{
       }
     } catch (e) {
       print("Erreur: $e");
-      Get.snackbar("Erreur", "Une erreur s'est produite");
+      //Get.snackbar("Erreur", "Une erreur s'est produite");
     }
   }
 }

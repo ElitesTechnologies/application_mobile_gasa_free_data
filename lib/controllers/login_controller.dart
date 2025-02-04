@@ -18,8 +18,8 @@ class LoginController extends GetxController{
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    emailController = TextEditingController(text: '');
-    passwordController = TextEditingController(text: '');
+    emailController = TextEditingController(text: 'joelprinceyeheze@gmail.com');
+    passwordController = TextEditingController(text: '1234567890');
   }
 
   @override

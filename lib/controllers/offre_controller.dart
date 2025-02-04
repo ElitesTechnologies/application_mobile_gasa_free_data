@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:gasa_free_data/models/offres.dart';
@@ -13,7 +14,9 @@ class OffreController extends GetxController {
   void onInit() {
     super.onInit();
     getOffre();
-    print("Chargement des offres...");
+    Timer.periodic(Duration(minutes: 5), (Timer t){
+      getOffre();
+    });
   }
 
   Future<void> getOffre() async {
@@ -21,7 +24,7 @@ class OffreController extends GetxController {
       var response = await http.get(
         Uri.parse(baseUrl2 + 'api/offre_internet/showAll'),
         headers: {
-          "X-API-KEY": "AfGwD4MP1y5DVBypntCsupBVVeYEwMpfcshFbCT7"
+          "X-API-KEY": "YaKPUrp8En4vFdPwgBrRzzsdT5CKEg6WnAB7ENhL"
         },
       );
 
@@ -36,11 +39,11 @@ class OffreController extends GetxController {
 
         listOffres.assignAll(offresList); // Met à jour la liste de manière réactive
       } else {
-        Get.snackbar("Erreur", "Impossible de charger les offres");
+        //Get.snackbar("Erreur", "Impossible de charger les offres");
       }
     } catch (e) {
       print("Erreur: $e");
-      Get.snackbar("Erreur", "Impossible de charger les offres");
+      //Get.snackbar("Erreur", "Impossible de charger les offres");
     }
   }
 }

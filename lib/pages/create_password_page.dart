@@ -5,7 +5,6 @@ import '../components/j_button.dart';
 import '../components/j_input.dart';
 import '../controllers/register_controller.dart';
 import '../themes/theme.dart';
-import 'home_page.dart';
 
 class CreatePasswordPage extends StatelessWidget {
   final registerController = Get.put(RegisterController());
@@ -16,6 +15,7 @@ class CreatePasswordPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(
+        backgroundColor: bgColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),

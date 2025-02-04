@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gasa_free_data/components/j_select.dart';
-import 'package:gasa_free_data/controllers/payment_controller.dart';
-import 'package:gasa_free_data/utils/base_url.dart';
+import 'package:gasa_free_data/pages/payement_page.dart';
 import 'package:get/get.dart';
 
 import '../components/j_button.dart';
@@ -9,7 +8,6 @@ import '../controllers/user_controller.dart';
 import '../themes/theme.dart';
 
 class ChoicePhoneNumberPage extends StatelessWidget {
-  final paymentController = Get.put(PaymentController());
   final userController = Get.put(UserController());
   ChoicePhoneNumberPage({super.key});
 
@@ -53,7 +51,7 @@ class ChoicePhoneNumberPage extends StatelessWidget {
               height: 55,
               width: Get.width,
               child: JButton(
-                onPressed: () => paymentController.initiatePayment('1','1','440000001'),
+                onPressed: () => Get.to(PayementPage()),
                 fg: Colors.white,
                 bg: primaryColor,
                 child: const Text("Valider"),
@@ -65,3 +63,4 @@ class ChoicePhoneNumberPage extends StatelessWidget {
     );
   }
 }
+
