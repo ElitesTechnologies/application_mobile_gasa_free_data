@@ -6,19 +6,14 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: primaryColor,
       body: Align(
         alignment: Alignment.center,
-        child: Column(
-          children: [
-            Spacer(),
-            Icon(Icons.wifi, color: Colors.white, size: 80,),
-            Text("Gasa Free Data",
-              style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            Spacer()
-          ],
+        child: Image.asset(
+          "images/logo2.jpeg",
+          height: 200,
+          width: 200,
         ),
       ),
     );

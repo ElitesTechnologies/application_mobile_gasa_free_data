@@ -14,9 +14,7 @@ class CheckEmailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
       appBar: AppBar(
-        backgroundColor: bgColor,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),

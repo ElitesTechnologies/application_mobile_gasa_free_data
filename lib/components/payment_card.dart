@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gasa_free_data/models/payments.dart';
+import 'package:gasa_free_data/themes/theme.dart';
 
 class PaymentCard extends StatelessWidget {
   final Payments paiement;
@@ -13,7 +14,7 @@ class PaymentCard extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.only(bottom: 15),
       decoration: BoxDecoration(
-          color: CupertinoColors.systemGrey4,
+          color: secondaryColor,
           borderRadius: BorderRadius.circular(5)
       ),
       child: Row(
@@ -37,8 +38,8 @@ class PaymentCard extends StatelessWidget {
           ),
           Container(
             height: double.infinity,
-            width: 1,
-            color: Colors.black12,
+            width: 3,
+            color: primaryColor,
           ),
           Text("${paiement.status}",
             style: const TextStyle(

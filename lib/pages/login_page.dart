@@ -15,7 +15,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15),
@@ -42,17 +41,17 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 50,),
                 JInput(
-                    name: "Email",
-                    placeholder: "Email",
-                    keyboardType: TextInputType.emailAddress,
-                    passwordInput: false,
-                    controller: loginController.emailController,
+                  name: "Email",
+                  placeholder: "Email",
+                  keyboardType: TextInputType.emailAddress,
+                  passwordInput: false,
+                  controller: loginController.emailController,
                 ),
                 const SizedBox(height: 25,),
                 JInput(
-                    name: "Mot de Passe",
-                    passwordInput: true,
-                    controller: loginController.passwordController,
+                  name: "Mot de Passe",
+                  passwordInput: true,
+                  controller: loginController.passwordController,
                 ),
                 const SizedBox(height: 10,),
                 GestureDetector(
@@ -61,7 +60,7 @@ class LoginPage extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Text("Mot de Passe oublié?",
                       style: TextStyle(
-                        fontSize: 18
+                          fontSize: 18
                       ),
                     ),
                   ),

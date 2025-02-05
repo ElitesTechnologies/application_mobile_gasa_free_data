@@ -13,10 +13,10 @@ class Menu extends StatelessWidget {
       children: [
         const SizedBox(height: 5),
         ListTile(
-          leading: const Icon(Icons.phone_android, color: primaryColor),
+          leading: const Icon(Icons.phone_android, color: Colors.white),
           title: const Text(
             "Ajouter un numéro momo",
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 18, color: Colors.white),
           ),
           onTap: () {
             Get.back();
@@ -25,10 +25,10 @@ class Menu extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         ListTile(
-          leading: const Icon(Icons.lock, color: primaryColor),
+          leading: const Icon(Icons.lock, color: Colors.white),
           title: const Text(
             "Changer mot de passe",
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 18, color: Colors.white),
           ),
           onTap: () {
             Get.back();

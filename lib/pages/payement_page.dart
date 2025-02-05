@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gasa_free_data/components/j_snack_bar.dart';
 import 'package:gasa_free_data/components/loader.dart';
 import 'package:gasa_free_data/pages/home_page.dart';
 import 'package:gasa_free_data/themes/theme.dart';
+import 'package:gasa_free_data/utils/base_url.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../controllers/payment_controller.dart';
+import '../controllers/user_controller.dart';
 
 class PayementPage extends StatefulWidget {
   const PayementPage({super.key});
@@ -13,6 +18,8 @@ class PayementPage extends StatefulWidget {
 }
 
 class _PayementPageState extends State<PayementPage> {
+  final userController = Get.put(UserController());
+  final paymentController = Get.put(PayementController());
   late WebViewController controller;
   bool isLoading = true; // ✅ Variable pour afficher le loader
 
@@ -34,17 +41,24 @@ class _PayementPageState extends State<PayementPage> {
               isLoading = false;
             });
           },
-          onHttpError: (HttpResponseError error) {},
-          onWebResourceError: (WebResourceError error) {},
+          onHttpError: (HttpResponseError error) {
+            Get.back();
+            JSnackBar(context, "Erreur", "Erreur lors de du chargement de la page de payement", "sucsess");
+          },
+          onWebResourceError: (WebResourceError error) {
+            //Get.back();
+            //JSnackBar(context, "Erreur", "Erreur lors de du chargement de la page de payement", "sucsess");
+          },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('http://192.168.8.100:8000/api/payment/success')) {
+            if (request.url.startsWith(baseUrl2+'api/payment/success')) {
               Get.offAll(HomePage());
+              JSnackBar(context, "Paiement éffectué", "Votre paiement a été éffectuer avec succès.", "success");
             }
             return NavigationDecision.navigate;
           },
         ),
       )
-      ..loadRequest(Uri.parse('http://192.168.8.100:8000/api/payment/2/1/64000001')); // ✅ URL corrigée
+      ..loadRequest(Uri.parse(baseUrl2+'api/payment/${userController.user.value.id}/${paymentController.idOffre}/${paymentController.numeroController.text}')); // ✅ URL corrigée
 
   }
 
@@ -61,7 +75,7 @@ class _PayementPageState extends State<PayementPage> {
           WebViewWidget(controller: controller),
           if (isLoading) // ✅ Affiche le loader uniquement si `isLoading == true`
             Container(
-              color: bgColor, // ✅ Arrière-plan semi-transparent
+              color: Colors.white,
               child: Loader(),
             ),
         ],

@@ -4,19 +4,19 @@ import 'package:gasa_free_data/pages/payement_page.dart';
 import 'package:get/get.dart';
 
 import '../components/j_button.dart';
+import '../controllers/payment_controller.dart';
 import '../controllers/user_controller.dart';
 import '../themes/theme.dart';
 
 class ChoicePhoneNumberPage extends StatelessWidget {
   final userController = Get.put(UserController());
-  ChoicePhoneNumberPage({super.key});
+  final paymentController = Get.put(PayementController());
+  final int id;
+  ChoicePhoneNumberPage({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController phoneNumberController = TextEditingController();
-
     return Scaffold(
-      backgroundColor: bgColor,
       appBar: AppBar(
         title: const Text("Paiement de forfait"),
         backgroundColor: primaryColor,
@@ -39,19 +39,30 @@ class ChoicePhoneNumberPage extends StatelessWidget {
             JSelect(
               label: "Numéro MoMo",
               options: [
-                DropdownMenuItem(
-                  value: '${userController.user.value.numMomo}',
-                  child: Text('${userController.user.value.numMomo}'),
-                ),
+                if (userController.user.value.numMomo != null &&
+                    userController.user.value.numMomo!.isNotEmpty)
+                  DropdownMenuItem(
+                    value: userController.user.value.numMomo,
+                    child: Text(userController.user.value.numMomo!),
+                  ),
+                if (userController.user.value.numMomo2 != null &&
+                    userController.user.value.numMomo2!.isNotEmpty)
+                  DropdownMenuItem(
+                    value: userController.user.value.numMomo2,
+                    child: Text(userController.user.value.numMomo2!),
+                  ),
               ],
-              controller: phoneNumberController,
+              controller: paymentController.numeroController,
             ),
             const SizedBox(height: 30),
             SizedBox(
               height: 55,
               width: Get.width,
               child: JButton(
-                onPressed: () => Get.to(PayementPage()),
+                onPressed: () {
+                  paymentController.idOffre = id;
+                  paymentController.verify(context);
+                },
                 fg: Colors.white,
                 bg: primaryColor,
                 child: const Text("Valider"),

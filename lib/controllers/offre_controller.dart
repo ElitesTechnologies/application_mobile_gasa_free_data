@@ -14,7 +14,7 @@ class OffreController extends GetxController {
   void onInit() {
     super.onInit();
     getOffre();
-    Timer.periodic(Duration(minutes: 5), (Timer t){
+    Timer.periodic(Duration(seconds: 30), (Timer t){
       getOffre();
     });
   }

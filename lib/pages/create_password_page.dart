@@ -13,9 +13,7 @@ class CreatePasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
       appBar: AppBar(
-        backgroundColor: bgColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),

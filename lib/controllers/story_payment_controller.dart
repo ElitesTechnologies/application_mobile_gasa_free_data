@@ -5,8 +5,6 @@ import 'package:gasa_free_data/controllers/user_controller.dart';
 import 'package:gasa_free_data/models/payments.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
-import '../components/j_snack_bar.dart';
 import '../utils/base_url.dart';
 
 class StoryPaymentController extends GetxController{
@@ -16,7 +14,7 @@ class StoryPaymentController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    Timer.periodic(Duration(seconds: 5), (Timer t){
+    Timer.periodic(Duration(seconds: 30), (Timer t){
       getPayment();
     });
   }
@@ -24,7 +22,7 @@ class StoryPaymentController extends GetxController{
   Future<void> getPayment() async {
     try {
       var response = await http.get(
-        Uri.parse(baseUrl2 + 'api/historique/1'),
+        Uri.parse(baseUrl2 + 'api/historique/${userController.user.value.id}'),
         headers: {
           "X-API-KEY": "YaKPUrp8En4vFdPwgBrRzzsdT5CKEg6WnAB7ENhL"
         },

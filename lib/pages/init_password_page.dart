@@ -13,9 +13,7 @@ class InitPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
       appBar: AppBar(
-        backgroundColor: bgColor,
       ),
       body: SafeArea(
         child: Padding(

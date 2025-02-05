@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gasa_free_data/components/menu.dart';
-import 'package:gasa_free_data/pages/profil_page.dart';
-import 'package:gasa_free_data/pages/section/historique_payment.dart';
-import 'package:gasa_free_data/pages/section/list_offre.dart';
+import 'package:gasa_free_data/pages/section/profil.dart';
+import 'package:gasa_free_data/pages/section/historique.dart';
+import 'package:gasa_free_data/pages/section/home.dart';
 import 'package:get/get.dart';
 
 import 'package:gasa_free_data/themes/theme.dart';
@@ -19,84 +19,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var _currentIndex = 1;
+  var _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
-      appBar: AppBar(
-        leading: _currentIndex != 0 ? IconButton(
-            onPressed: () => Get.to(ProfilPage()),
-            icon: const Icon(Icons.account_circle)
-        ):null,
-        title: [
-          const Text("Historique de payement"),
-          const Text("Gasa Free Data"),
-          const Text("Gasa Free Data")
-        ][_currentIndex],
-        actions: [
-          _currentIndex != 0 ? IconButton(
-              onPressed: () async {
-                await SharedPrefs().removeUser() ;
-                Get.offAll(LoginPage());
-              },
-              icon: const Icon(Icons.logout)
-          ):Container()
-        ],
-        foregroundColor: Colors.white,
-        backgroundColor: primaryColor,
-        elevation: 0,
-      ),
+      backgroundColor: Colors.white,
       body: [
-        HistoriquePayment(),
-        ListOffre(),
-        ListOffre(),
+        Home(),
+        Historique(),
+        Profil()
       ][_currentIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _currentIndex = 1;
-          });
-        },
-        child: Icon(Icons.grid_view),
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
-        focusColor: secondaryColor,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar:BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (value) {
           setState(() {
-            if(value ==2){
-              showMoreMenu(context);
-              return;
-            }
             _currentIndex = value;
           });
         },
         selectedItemColor: primaryColor,
-        backgroundColor: bgColor,
         items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Acceuil"),
           BottomNavigationBarItem(icon: Icon(Icons.payments), label: "Historique"),
-          BottomNavigationBarItem(icon: Icon(Icons.call_missed_outgoing), label: "Liste des offres"),
-          BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "Plus"),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Mon compte"),
         ],
       ) ,
-    );
-  }
-
-  void showMoreMenu(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) {
-        return SafeArea(
-            child: SizedBox(
-              child:  Menu(),
-              height: MediaQuery.of(context).size.height*0.2,
-            ));
-      },
     );
   }
 }

@@ -13,7 +13,6 @@ class ChangePasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
       appBar: AppBar(
         title: Text("Changer mot de passe"),
         backgroundColor: primaryColor,
